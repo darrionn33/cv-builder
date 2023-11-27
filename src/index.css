@@ -1,0 +1,90 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+#root {
+  @apply min-h-[100dvh] grid gap-x-2;
+
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 40px 1fr;
+  grid-template-areas: "header header" "edit result";
+}
+#root > header {
+  @apply outline outline-1  bg-red-400 text-white flex items-center pl-3 uppercase;
+  grid-area: header;
+}
+#root > section {
+  @apply outline outline-1 p-2 pl-3;
+}
+section.edit {
+  grid-area: edit;
+}
+section.result {
+  grid-area: result;
+}
+section > h2 {
+  @apply h-10 border-b-2 text-center text-white p-2  ml-auto mr-auto;
+}
+.edit > h2 {
+  @apply bg-emerald-400;
+}
+.result > h2 {
+  @apply bg-red-400;
+}
+.edit > form,
+.edit > form > fieldset {
+  @apply p-3 flex flex-col gap-2;
+}
+.edit > form {
+  @apply overflow-y-auto;
+  max-height: calc(100dvh - 40px - 3.5rem);
+}
+.edit > form > fieldset > h2 {
+  @apply border-b-2;
+}
+.edit > form > fieldset > input {
+  @apply outline outline-1 h-8 rounded-sm pl-2;
+}
+.edit > form > button {
+  @apply bg-slate-500 text-white outline outline-1 h-10 rounded-sm pl-2;
+}
+fieldset > h2 {
+  @apply mb-4;
+}
+fieldset.edu > button {
+  @apply h-10 py-2 bg-green-500 text-white;
+}
+fieldset.edu > div {
+  @apply p-4 rounded-md bg-slate-100;
+}
+fieldset.edu > div > p:nth-child(1) {
+  @apply text-lg;
+}
+fieldset.edu > div > p:nth-child(2) {
+  @apply text-gray-500;
+}
+fieldset.edu > div > p:nth-child(3) {
+  @apply text-right;
+}
+div.cv {
+  @apply p-3 flex flex-col gap-2;
+}
+div.cv > h1 {
+  @apply text-xl uppercase font-sans;
+}
+table,
+td,
+th {
+  @apply border text-left;
+}
+td,
+th {
+  @apply p-4;
+}
+@media (max-width: 700px) {
+  #root {
+    grid-template-columns: 1fr;
+    grid-template-rows: 40px 100dvh 100dvh;
+    grid-template-areas: "header" "edit" "result";
+  }
+}
