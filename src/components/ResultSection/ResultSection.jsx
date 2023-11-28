@@ -1,4 +1,5 @@
 import QualificationsTable from "./QualificationsTable";
+import WorkXPTable from "./WorkXPTable";
 
 const ResultSection = (props) => {
   return (
@@ -10,6 +11,11 @@ const ResultSection = (props) => {
         <p>{props.data.number ? props.data.number : ""}</p>
         {props.data.qualifications && props.data.qualifications.length > 0 ? (
           <QualificationsTable qualifications={props.data.qualifications} />
+        ) : (
+          ""
+        )}
+        {props.data.workXP && props.data.workXP.length > 0 ? (
+          <WorkXPTable workXP={props.data.workXP} />
         ) : (
           ""
         )}

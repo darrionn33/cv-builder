@@ -51,19 +51,24 @@ section > h2 {
 fieldset > h2 {
   @apply mb-4;
 }
-fieldset.edu > button {
+fieldset.edu > button,
+fieldset.work > button {
   @apply h-10 py-2 bg-green-500 text-white;
 }
-fieldset.edu > div {
+fieldset.edu > div,
+fieldset.work > div {
   @apply p-4 rounded-md bg-slate-100;
 }
-fieldset.edu > div > p:nth-child(1) {
+fieldset.edu > div > p:nth-child(1),
+fieldset.work > div > p:nth-child(1) {
   @apply text-lg;
 }
-fieldset.edu > div > p:nth-child(2) {
+fieldset.edu > div > p:nth-child(2),
+fieldset.work > div > p:nth-child(2) {
   @apply text-gray-500;
 }
-fieldset.edu > div > p:nth-child(3) {
+fieldset.edu > div > p:nth-child(3),
+fieldset.work > div > p:nth-child(3) {
   @apply text-right;
 }
 div.cv {
