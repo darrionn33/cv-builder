@@ -3,23 +3,6 @@ import { useForm } from "react-hook-form";
 import FieldsetBasicInfo from "./FieldsetBasicInfo";
 import FieldsetEduInfo from "./FieldsetEduInfo";
 const EditSection = (props) => {
-  const defaultQ = [
-    {
-      name: "St. Whatev's College, Somewhere",
-      qualification: "B.A. (Awesome Hons.)",
-      yearOfPassing: 2023,
-    },
-    {
-      name: "St. Whatev's College, Somewhere",
-      qualification: "B.A. (Awesome Hons.)",
-      yearOfPassing: 2023,
-    },
-    {
-      name: "St. Whatev's College, Somewhere",
-      qualification: "B.A. (Awesome Hons.)",
-      yearOfPassing: 2023,
-    },
-  ];
   const [qualifications, setQualifications] = useState([]);
 
   const {

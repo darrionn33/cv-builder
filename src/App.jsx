@@ -1,6 +1,6 @@
 import Header from "./components/Header";
-import EditSection from "./components/EditSection";
-import ResultSection from "./components/ResultSection";
+import EditSection from "./components/EditSection/EditSection";
+import ResultSection from "./components/ResultSection/ResultSection";
 import { useState } from "react";
 function App() {
   const [data, setData] = useState({});

@@ -1,8 +1,9 @@
-import { useState } from "react";
-import { useForm } from "react-hook-form";
+import { useRef, useState } from "react";
 
 const FieldsetEduInfo = (props) => {
-  const { watch, register, resetField } = useForm();
+  const instituteName = useRef();
+  const qualification = useRef();
+  const yearOfPassing = useRef();
   const [newQDiv, setNewQDiv] = useState(false);
 
   const showNewQDiv = () => {
@@ -12,9 +13,9 @@ const FieldsetEduInfo = (props) => {
   const addQualification = () => {
     setNewQDiv(false);
     const newQualification = {
-      name: watch("institute-name"),
-      qualification: watch("qualification"),
-      yearOfPassing: watch("year-of-passing"),
+      name: instituteName.current.value,
+      qualification: qualification.current.value,
+      yearOfPassing: yearOfPassing.current.value,
     };
     if (
       newQualification.name.match(/^\w/) &&
@@ -24,9 +25,9 @@ const FieldsetEduInfo = (props) => {
         ...prevQualifications,
         newQualification,
       ]);
-      resetField("institute-name");
-      resetField("qualification");
-      resetField("year-of-passing");
+      instituteName.current.value = "";
+      qualification.current.value = "";
+      yearOfPassing.current.value = "";
     }
   };
   return (
@@ -36,25 +37,17 @@ const FieldsetEduInfo = (props) => {
       {newQDiv ? (
         <>
           <label htmlFor="institute-name">Institute Name</label>
-          <input
-            type="text"
-            id="institute-name"
-            {...register("institute-name")}
-          />
+          <input type="text" id="institute-name" ref={instituteName} />
           <label htmlFor="qualification">Qualification</label>
-          <input
-            type="text"
-            id="qualification"
-            {...register("qualification")}
-          />
+          <input type="text" id="qualification" ref={qualification} />
           <label htmlFor="year-of-passing">Year Of Passing</label>
           <input
             type="number"
             id="year-of-passing"
-            min="1900"
+            min="1950"
             max={new Date().getFullYear()}
             placeholder="YYYY"
-            {...register("year-of-passing")}
+            ref={yearOfPassing}
           />
           <button type="button" onClick={addQualification}>
             + Add Qualification
@@ -65,8 +58,8 @@ const FieldsetEduInfo = (props) => {
           New Qualification
         </button>
       )}
-      {props.qualifications.map((qualification) => (
-        <div key={qualification.name}>
+      {props.qualifications.map((qualification, index) => (
+        <div key={index}>
           {" "}
           <p>{qualification.name}</p>
           <p>{qualification.qualification}</p>
