@@ -28,6 +28,7 @@ const EditSection = (props) => {
           className="basic"
           register={register}
           errors={errors}
+          data={props.data}
         />
         <FieldsetEduInfo
           className="edu"
