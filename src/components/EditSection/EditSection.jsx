@@ -2,8 +2,13 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import FieldsetBasicInfo from "./FieldsetBasicInfo";
 import FieldsetEduInfo from "./FieldsetEduInfo";
+import FieldsetWorkInfo from "./FieldsetWorkInfo";
 const EditSection = (props) => {
-  const [qualifications, setQualifications] = useState([]);
+  // dummy data to be removed
+  const [qualifications, setQualifications] = useState(
+    props.data.qualifications
+  );
+  const [workXP, setWorkXP] = useState(props.data.workXP);
 
   const {
     register,
@@ -12,7 +17,7 @@ const EditSection = (props) => {
   } = useForm();
 
   const submitData = (data) => {
-    props.setData({ ...data, qualifications });
+    props.setData({ ...data, qualifications, workXP });
   };
 
   return (
@@ -28,6 +33,11 @@ const EditSection = (props) => {
           className="edu"
           qualifications={qualifications}
           setQualifications={setQualifications}
+        />
+        <FieldsetWorkInfo
+          className="work"
+          workXP={workXP}
+          setWorkXP={setWorkXP}
         />
         <button type="submit">Generate</button>
       </form>
