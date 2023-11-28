@@ -25,13 +25,13 @@ function App() {
         name: "ITI",
         designation: "Substitute Teacher",
         dateOfJoining: "2023-01-19",
-        dateOfExiting: "2023-06-15",
+        dateOfExit: "2023-06-15",
       },
       {
         name: "Congress",
         designation: "Video Editor",
         dateOfJoining: "2023-01-19",
-        dateOfExiting: "2023-06-15",
+        dateOfExit: "2023-06-15",
       },
     ],
   });

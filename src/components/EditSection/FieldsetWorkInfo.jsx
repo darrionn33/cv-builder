@@ -4,7 +4,7 @@ const FieldsetWorkInfo = (props) => {
   const companyName = useRef();
   const designation = useRef();
   const dateOfJoining = useRef();
-  const dateOfExiting = useRef();
+  const dateOfExit = useRef();
   const [newXPDiv, setNewXPDiv] = useState(false);
 
   const showNewXPDiv = () => {
@@ -17,7 +17,7 @@ const FieldsetWorkInfo = (props) => {
       name: companyName.current.value,
       designation: designation.current.value,
       dateOfJoining: dateOfJoining.current.value,
-      dateOfExiting: dateOfExiting.current.value,
+      dateOfExit: dateOfExit.current.value,
     };
     if (
       newExperience.name.match(/^\w/) &&
@@ -27,7 +27,7 @@ const FieldsetWorkInfo = (props) => {
       companyName.current.value = "";
       designation.current.value = "";
       dateOfJoining.current.value = "";
-      dateOfExiting.current.value = "";
+      dateOfExit.current.value = "";
     }
   };
   return (
@@ -43,20 +43,20 @@ const FieldsetWorkInfo = (props) => {
           <label htmlFor="date-of-joining">Date Of Joining</label>
           <input
             type="date"
-            id="year-of-joining"
+            id="date-of-joining"
             min="1950"
             max={new Date().getFullYear()}
             placeholder="YYYY"
             ref={dateOfJoining}
           />
-          <label htmlFor="year-of-exiting">Date Of Exiting</label>
+          <label htmlFor="date-of-exit">Date Of Exit</label>
           <input
             type="date"
-            id="date-of-exiting"
+            id="date-of-exit"
             min="1950"
             max={new Date().getFullYear()}
             placeholder="YYYY"
-            ref={dateOfExiting}
+            ref={dateOfExit}
           />
           <button type="button" onClick={addXP}>
             + Add Experience
@@ -75,7 +75,7 @@ const FieldsetWorkInfo = (props) => {
           <p>
             {experience.dateOfJoining.split("-")[0] +
               " - " +
-              experience.dateOfExiting.split("-")[0]}
+              experience.dateOfExit.split("-")[0]}
           </p>
         </div>
       ))}

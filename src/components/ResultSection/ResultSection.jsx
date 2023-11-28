@@ -6,9 +6,19 @@ const ResultSection = (props) => {
     <section className={props.className}>
       <h2>Result</h2>
       <div className="cv">
-        <h1>{props.data.name ? props.data.name : ""}</h1>
-        <p>{props.data.email ? props.data.email : ""}</p>
-        <p>{props.data.number ? props.data.number : ""}</p>
+        <header>
+          <p>
+            {props.data.name.split(" ").length === 1
+              ? props.data.name.split(" ")
+              : props.data.name.split(" ")[0].split("")[0] +
+                props.data.name.split(" ")[1].split("")[0]}
+          </p>
+          <div>
+            <h1>{props.data.name ? props.data.name : ""}</h1>
+            <p>{props.data.email ? props.data.email : ""}</p>
+            <p>{props.data.number ? props.data.number : ""}</p>
+          </div>
+        </header>
         {props.data.qualifications && props.data.qualifications.length > 0 ? (
           <QualificationsTable qualifications={props.data.qualifications} />
         ) : (
