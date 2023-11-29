@@ -2,8 +2,16 @@ import html2canvas from "html2canvas";
 import QualificationsTable from "./QualificationsTable";
 import WorkXPTable from "./WorkXPTable";
 import { useEffect } from "react";
+import jsPDF from "jspdf";
+import saveButton from "../../assets/content-save.svg";
 
 const ResultSection = (props) => {
+  const savePDF = () => {
+    const doc = new jsPDF();
+    const canvas = document.querySelector(".preview-container > canvas");
+    doc.addImage(canvas.toDataURL("image/jpeg"), "JPEG", 0, 0, 210, 297);
+    doc.save(props.data.name + " CV.pdf");
+  };
   const findScale = (canvas, container) => {
     let scaleString = "1";
 
@@ -24,7 +32,7 @@ const ResultSection = (props) => {
     return scaleString;
   };
 
-  const savePDF = () => {
+  const generatePreview = () => {
     const container = document.querySelector(
       "section.result > .preview-container"
     );
@@ -42,7 +50,7 @@ const ResultSection = (props) => {
     });
   };
   useEffect(() => {
-    savePDF();
+    generatePreview();
   }, [props.data]);
   return (
     <section className={props.className}>
@@ -73,6 +81,7 @@ const ResultSection = (props) => {
           ""
         )}
       </div>
+      <img src={saveButton} onClick={savePDF} />
     </section>
   );
 };
