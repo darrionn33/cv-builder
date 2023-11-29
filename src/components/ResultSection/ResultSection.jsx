@@ -41,6 +41,7 @@ const ResultSection = (props) => {
       scale: 3,
     }).then((canvas) => {
       canvas.style.transform = "scale(" + findScale(canvas, container) + ")";
+      container.replaceChildren();
       container.appendChild(canvas);
       canvas.style.transformOrigin = "top left";
       container.style.maxHeight =

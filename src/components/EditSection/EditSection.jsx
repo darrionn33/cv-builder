@@ -4,11 +4,22 @@ import FieldsetBasicInfo from "./FieldsetBasicInfo";
 import FieldsetEduInfo from "./FieldsetEduInfo";
 import FieldsetWorkInfo from "./FieldsetWorkInfo";
 const EditSection = (props) => {
-  // dummy data to be removed
+
   const [qualifications, setQualifications] = useState(
     props.data.qualifications
-  );
-  const [workXP, setWorkXP] = useState(props.data.workXP);
+    );
+    const [workXP, setWorkXP] = useState(props.data.workXP);
+  const clear = () => {
+    setQualifications([]);
+    setWorkXP([]);
+    props.setData({
+      name: "",
+      email: "",
+      number: "",
+      qualifications: [],
+      workXP: [],
+    });
+  };
 
   const {
     register,
@@ -40,6 +51,9 @@ const EditSection = (props) => {
           workXP={workXP}
           setWorkXP={setWorkXP}
         />
+        <button id="clear" type="button" onClick={clear}>
+          Clear
+        </button>
         <button type="submit">Generate</button>
       </form>
     </section>

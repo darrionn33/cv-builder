@@ -19,6 +19,9 @@
 section.edit {
   grid-area: edit;
 }
+button#clear {
+  background-color: red !important;
+}
 section.result {
   grid-area: result;
   @apply overflow-y-auto;
