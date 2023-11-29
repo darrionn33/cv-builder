@@ -1,10 +1,53 @@
+import html2canvas from "html2canvas";
 import QualificationsTable from "./QualificationsTable";
 import WorkXPTable from "./WorkXPTable";
+import { useEffect } from "react";
 
 const ResultSection = (props) => {
+  const findScale = (canvas, container) => {
+    let scaleString = "1";
+
+    for (let i = 1000; i > 0; i--) {
+      let currentScale = "0." + i.toString().padEnd(3, "0");
+      canvas.style.transform = `scale(${currentScale})`;
+      document.body.appendChild(canvas);
+
+      let canvasWidth = canvas.getBoundingClientRect().width;
+      let containerWidth = container.offsetWidth;
+
+      if (canvasWidth < containerWidth && canvasWidth > containerWidth - 10) {
+        scaleString = currentScale;
+        break;
+      }
+    }
+
+    return scaleString;
+  };
+
+  const savePDF = () => {
+    const container = document.querySelector(
+      "section.result > .preview-container"
+    );
+
+    html2canvas(document.querySelector("div.cv"), {
+      scale: 3,
+    }).then((canvas) => {
+      canvas.style.transform = "scale(" + findScale(canvas, container) + ")";
+      container.appendChild(canvas);
+      canvas.style.transformOrigin = "top left";
+      container.style.maxHeight =
+        canvas.getBoundingClientRect().width / 0.7 + "px";
+      container.style.maxWidth = canvas.getBoundingClientRect().width + "px";
+      container.appendChild(canvas);
+    });
+  };
+  useEffect(() => {
+    savePDF();
+  }, [props.data]);
   return (
     <section className={props.className}>
       <h2>Result</h2>
+      <div className="preview-container"></div>
       <div className="cv">
         <header>
           <p>

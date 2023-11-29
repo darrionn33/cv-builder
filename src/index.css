@@ -14,13 +14,14 @@
   grid-area: header;
 }
 #root > section {
-  @apply outline outline-1 p-2 pl-3;
+  @apply outline outline-1 p-2 pl-3 max-h-full;
 }
 section.edit {
   grid-area: edit;
 }
 section.result {
   grid-area: result;
+  @apply overflow-y-auto;
 }
 section > h2 {
   @apply h-10 border-b-2 text-center text-white p-2  ml-auto mr-auto;
@@ -71,14 +72,17 @@ fieldset.edu > div > p:nth-child(3),
 fieldset.work > div > p:nth-child(3) {
   @apply text-right;
 }
+div.preview-container {
+  @apply w-full h-full overflow-hidden mx-auto;
+}
 div.cv {
-  @apply p-3 flex flex-col gap-2;
+  @apply p-3 flex flex-col gap-2 fixed top-0 left-[-620px] w-[620px] h-[877px] bg-white border border-2 border-black;
 }
 div.cv > header {
   @apply h-24 p-2 flex items-center;
 }
 div.cv > header > p {
-  @apply text-white bg-black flex items-center m-2 justify-center p-2 rounded-full w-20 h-20;
+  @apply text-white bg-black  m-2 justify-center p-2 rounded-full w-20 h-20 text-3xl leading-10 text-center;
 }
 div.cv > header > div > h1 {
   @apply text-xl uppercase font-sans;
@@ -86,7 +90,7 @@ div.cv > header > div > h1 {
 table,
 td,
 th {
-  @apply border border-2 text-left;
+  @apply border border-2 text-left text-sm;
 }
 td,
 th {
@@ -98,7 +102,18 @@ th {
 @media (max-width: 700px) {
   #root {
     grid-template-columns: 1fr;
-    grid-template-rows: 40px 100dvh 100dvh;
+    grid-template-rows: 40px auto auto;
     grid-template-areas: "header" "edit" "result";
+  }
+  #root > section {
+    max-height: none;
+  }
+  #root > header > h1 {
+    width: 100%;
+    text-align: center;
+  }
+  .edit > form {
+    overflow-y: visible;
+    max-height: none;
   }
 }
